@@ -8,12 +8,16 @@ const app=express()
 dotenv.config();
 
 app.use(express.json());
-
-connectDB();
-
 app.get("/",(req,res)=>{
       res.send("Server startted successfully");
 });
+
+connectDB();
+
+const urlRoutes = require("./routes/urlRoutes");
+
+app.use("/", urlRoutes);
+
 
 const port=process.env.PORT;
 app.listen(port,()=>{

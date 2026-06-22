@@ -1,0 +1,18 @@
+const Log = require("../../Logging Middleware/logger");
+
+const errorHandler = async (err, req, res, next) => {
+
+    await Log(
+        "backend",
+        "error",
+        "handler",
+        err.message
+    );
+
+    res.status(err.statusCode || 500).json({
+        success: false,
+        message: err.message || "Internal Server Error"
+    });
+};
+
+module.exports = errorHandler;
