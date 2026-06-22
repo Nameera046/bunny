@@ -16,7 +16,7 @@ const URLSchema=new mongoose.Schema(
         },
         expiry:{
             type:Date,
-            Default:Date.now
+            default:Date.now
         },
         clickCount:{
             type: Number,
@@ -24,12 +24,11 @@ const URLSchema=new mongoose.Schema(
         },
         clickDetails:[
             {
-                timestampp:Date,
+                timestamp:Date,
                 source:String,
                 Location:String
             }
         ]
     }
 );
-console.log("MODEL is created");
 module.exports=mongoose.model("URL",URLSchema);
