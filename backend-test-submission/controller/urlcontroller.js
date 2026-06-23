@@ -1,5 +1,5 @@
-const {createShortURL,validateUrl,redirectToOriginalUrL,getUrlStatistics}=require('../servicer/urlservice');
-const log=require('../logging Middleware1/logger');
+const {createShortUrl,validateUrl,redirectToOrginalUrl,getUrlStatistics}=require('../service/urlservice');
+const log=require('../../LoggingMiddleware/logger');
 
 const createUrl=async(req,res)=>{
     try
@@ -10,8 +10,8 @@ const createUrl=async(req,res)=>{
             "controller",
             "create URL request received"
         );
-        const {OriginalURl,validity}=req.body;
-        const isvalid=await validateUrl(OriginalURL);
+        const {originalUrl,validity}=req.body;
+        const isvalid=await validateUrl(originalUrl);
         if(!isvalid)
         {
             await log(
@@ -22,7 +22,7 @@ const createUrl=async(req,res)=>{
             );
             return res.status(400).json({message:"Invalid URL"});
         }
-        const result=await createShortURL(OriginalURL,validity);
+        const result=await createShortUrl(originalUrl,validity);
         return res.status(201).json(result);
     }
     catch(error)
@@ -31,22 +31,22 @@ const createUrl=async(req,res)=>{
             "Backend",
             "error",
             "controller",
-            erro.message
+            error.message
         )
         return res.status(500).json({message:"Internal Server Error"});
     }
-},
+};
 const redirectToUrl=async(req,res)=>{
     try
     {
         const {shortCode}=req.params;
-        const OriginalURL=await redirectToOriginalUrL(
+        const originalUrl=await redirectToOrginalUrl(
             shortCode,
             {
                 timestamp:new Date(),
                 source:req.headers.referer || "direct"
             });
-        if(!OriginalURL)
+        if(!originalUrl)
         {
             await log(
                 "Backend",
@@ -56,7 +56,7 @@ const redirectToUrl=async(req,res)=>{
             );
             return res.status(401).json({message:"ShortCode is not found"});
         }
-        return res.redirectToOriginalUrL;
+        return res.redirect(url.originalUrl);
     }
     catch(error)
     {
@@ -64,11 +64,11 @@ const redirectToUrl=async(req,res)=>{
             "Backend",
             "error",
             "controller",
-            erro.message
+            error.message
         )
         return res.status(500).json({message:"Internal Server Error"});
     }
-},
+};
 const getStatistics=async(req,res)=>{
     try
     {
@@ -92,11 +92,11 @@ const getStatistics=async(req,res)=>{
             "Backend",
             "error",
             "controller",
-            erro.message
+            error.message
         )
         return res.status(500).json({message:"Internal Server Error"});
     }
-}
+};
 module.exports={
     createUrl,
     redirectToUrl,

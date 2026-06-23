@@ -1,15 +1,15 @@
 const {saveURL, findByShortCode, updateClicks}=require('../repository/urlrepository');
 const generateshortCode=require('../utils/util');
-const log=require('../Logging Middleware1/logger');
+const log=require('../../LoggingMiddleware/logger');
 
-const createShortUrl=async(OriginalURL,validate=30)=>{
+const createShortUrl=async(OriginalURL,validity=30)=>{
       await log(
         "Backend",
         "Debug",
         "Service",
         `Creating shortcode for the URL ${OriginalURL}`
       );
-      const shortCode=generateShortCode();
+      const shortCode=generateshortCode();
       const expiry=new Date(Date.now()+validity*60*1000);
       const urlData={OriginalURL, shortCode,expiry};
       const result=await saveURL(urlData);
@@ -75,7 +75,7 @@ const redirectToOrginalUrl=async(shortCode,clickData)=>{
     );
     return url.OriginalURL;
 };
-const getUrlStatistics=async(shortcode)=>{
+const getUrlStatistics=async(shortCode)=>{
     await log(
         "Backend",
         "Debug",
@@ -108,7 +108,7 @@ const getUrlStatistics=async(shortcode)=>{
         clickDetails:url.clickDetails    
     }
 };
-module.export={
+module.exports={
     createShortUrl,
     validateUrl,
     redirectToOrginalUrl,

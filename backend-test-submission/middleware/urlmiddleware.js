@@ -1,4 +1,4 @@
-const Log = require("../../Logging Middleware/logger");
+const Log = require("../LoggingMiddleware/logger");
 
 const errorHandler = async (err, req, res, next) => {
 

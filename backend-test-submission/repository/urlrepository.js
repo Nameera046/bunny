@@ -1,5 +1,5 @@
 const url=require('../models/url');
-const log=require('../Logging Middleware1/logger');
+const log=require('../../LoggingMiddleware/logger');
 
 const saveURL=async(urlData)=>
 {
@@ -82,7 +82,7 @@ const updateClicks=async(shortCode,clickData)=>{
             "repository",
             `Updating the clicks for the shortCode ${shortCode}`
         );
-        const result=await url.findByOneAndUpdate(
+        const result=await url.findOneAndUpdate(
             {shortCode},
             {
                 $inc:{clickCount:1},
