@@ -1,0 +1,6 @@
+{
+    "editor.suggest.matchOnWordStartOnly": false,
+    "editor.acceptSuggestionOnEnter": "off",
+    "editor.acceptSuggestionOnCommitCharacter": false,
+    "editor.inlineSuggest.edits.renderSideBySide": "never"
+}
