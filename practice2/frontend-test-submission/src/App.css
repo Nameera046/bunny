@@ -1,6 +1,53 @@
+.body{
+  display:"flex";
+  flexDirection:"column";
+  justifyContent:"center";
+  alignItems:"center";
+  padding:"20px";
+}
+.para-section{
+  display:"flex";
+  justifyContent:"center";
+  alignItems:"center";
+  width:"80%";
+  textAlign:"center";
+  padding:"10px"
+}
 .field-box{
   height:"25px";
   borderRadius:"4px";
   marginBottom:"5px";
   marginTop:"5px"
+}
+.button
+{
+  backgroundColor:"#7692ce",;
+  borderRadius:"5px";
+  display:"flex";
+  justifyContent: "center";
+  alignItems:"center";
+  width:"80px";
+  height:"30px";
+  fontWeight:"bold";
+  cursor: "pointer";
+}
+.label{
+  fontWeight:"bold"
+}
+.section{
+  display:"flex";
+  flexDirection:"column";
+  justifyContent:"center";
+  alignItems:"center";
+  width:"40%";
+  border:"2px solid black";
+  borderRadius:"10px";
+  padding:"20px";
+}
+.section1{
+  display:"flex";
+  flexDirection:"column";
+  padding:"5px";
+  width:"90%";
+  marginBottom:"10px";
 }
