@@ -1,122 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
+import "./App.css";
+function App(){
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      <div style={{display:"flex",flexDirection:"column", justifyContent:"center",alignItems:"center",padding:"20px"}}>
+          <div>
+            <h1>URL Shortner</h1>
+          </div>
+          <div style={{display:"flex",justifyContent:"center",alignItems:"center",width:"80%",textAlign:"center",padding:"10px"}}>
+            <p>Welcome to the URL Shortener Dashboard! This application allows you to  convert long and complex URLs into short, easy-to-share links.</p>
+          </div>
+          <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",width:"40%",border:"2px solid black",borderRadius:"10px",padding:"20px"}}>
+            <div style={{display:"flex",flexDirection:"column",padding:"5px",width:"90%",marginTop:"10px"}}>
+              <label style={{fontWeight:"bold"}}>URL</label>
+              <input type="text" placeholder="Enter the Url" style={{height:"25px",borderRadius:"4px",marginBottom:"5px",marginTop:"5px"}} />   {/*className=field-box*/}
+            </div>
+            <div style={{display:"flex",flexDirection:"column",padding:"5px",width:"90%"}}>
+              <label style={{fontWeight:"bold"}}>Validity (in Minutes)</label>
+              <input type="text" placeholder="Enter the validity" style={{height:"25px",borderRadius:"4px",marginBottom:"5px",marginTop:"5px",}}/>{/*className=field-box*/}
+            </div>
+            <div style={{display:"flex",flexDirection:"column",padding:"5px",width:"90%",marginBottom:"10px"}}>
+              <label style={{fontWeight:"bold"}}>ShortCode</label>
+              <input type="text" placeholder="Enter the shortcode" style={{height:"25px",borderRadius:"4px",marginTop:"5px",marginBottom:"10px"}}/>{/*className=field-box*/}
+            </div>
+            <button style={{backgroundColor:"#7692ce", borderRadius:"5px",display:"flex",justifyContent: "center",alignItems:"center",width:"80px",height:"30px",fontWeight:"bold"}}>Submit</button>
+          </div>
+      </div>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+  );
 }
-
-export default App
+export default App;
