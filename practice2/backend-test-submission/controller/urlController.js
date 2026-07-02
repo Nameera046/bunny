@@ -1,4 +1,4 @@
-const {log}=require("../utils/loggingmiddleware.js");
+const log=require("../utils/loggingmiddleware.js");
 const urlStore=new Map();
 const createShortUrl=async(req,res)=>{
     try{
@@ -10,17 +10,17 @@ const createShortUrl=async(req,res)=>{
             return res.status(400).json({error:"url is required"});
         }
         let shortId=shortcode;
-        if(urlstore.has(storeId))
+        if(urlStore.has(shortId))
         {
             await log("Backend","warn","repository",`shortcode ${shortId} already exists`);
             return res.status(409).json({error:"shortcode already exists"});
         }
-        const expirydate=new Date(Date.now+validity*60*1000);
+        const expirydate=new Date(Date.now()+validity*60*1000);
         urlStore.set(shortId,{url,expiry:expirydate});
-        await log("Backend","infor","repository",`short url create for the ${url} with ${expirydate.toIOString()}`);
+        await log("Backend","infor","repository",`short url create for the ${url} with ${expirydate.toISOString()}`);
         return res.status(201).json({
-            shortLink:`http://localhost:8000/${shortId}`,
-            expiry:expirydate.toIOString()
+            shortLink:`http://localhost:3000/${shortId}`,
+            expiry:expirydate.toISOString()
         });
     }
     catch(error)
@@ -31,7 +31,7 @@ const createShortUrl=async(req,res)=>{
             "error":error.message
         })
     }
-},
+};
 const getOriginalUrl=async(req,res)=>{
     try{
         const{shortId}=req.params;
@@ -39,7 +39,7 @@ const getOriginalUrl=async(req,res)=>{
         const entry=urlStore.get(shortId);
         if(!entry)
         {
-            await loc("Backend","warn","repository",`shortId ${shortId} not found`);
+            await log("Backend","warn","repository",`shortId ${shortId} not found`);
             return res.status(404).json({error:"URL not Found"});
         }
         if(new Date()>new Date(entry.expiry))
@@ -59,10 +59,12 @@ const getOriginalUrl=async(req,res)=>{
             "error":error.message
         })
     }
-},
+};
 const getAllUrl=async(req,res)=>{
     try{
-        return res.josn({urlStore});
+        return res.json({
+            urlStore: Array.from(urlStore.entries())
+        });
     }
     catch(error)
     {

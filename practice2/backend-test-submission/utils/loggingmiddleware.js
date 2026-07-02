@@ -1,20 +1,21 @@
 const log=async(stack,level,package,message)=>{
     try{
-        console.log(`logged Locally on [${stack}], [${level}], [${package}], [${message}]`)
-        const response=await fetch('http://localhost:5000/api/log',{
-            method:post,
-            body:{
+        console.log(`logged Locally on [${stack}], [${level}], [${package}], [${message}]`);
+        const response=await fetch('http://localhost:5000/api/logs',{
+            method:"POST",
+            body:JSON.stringify({
                 stack,
                 level,
                 package,
                 message
-            },
+            }),
             headers:{
                 "content-type":"application/json"
             }
             
         });
-        return response.data;
+        const data=await response.json();
+        return data;
     }
     catch(error)
     {
